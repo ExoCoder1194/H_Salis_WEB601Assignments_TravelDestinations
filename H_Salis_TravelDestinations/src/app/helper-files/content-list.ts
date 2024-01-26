@@ -1,4 +1,4 @@
-// content-list.ts
+// helper-files/content-list.ts
 import { Content } from './content-interface';
 
 export class ContentList {
@@ -10,28 +10,28 @@ export class ContentList {
     return this.contentArray;
   }
 
-  add(item: Content): void {
-    this.contentArray.push(item);
+  add(contentItem: Content): void {
+    this.contentArray.push(contentItem);
   }
 
-  get itemCount(): number {
+  count(): number {
     return this.contentArray.length;
   }
 
   getHtmlOutput(index: number): string {
     if (index < 0 || index >= this.contentArray.length) {
-      return '<p style="color: red;">Error: Index out of range</p>';
+      return '<p>Error: Index out of range.</p>';
     }
 
-    const item = this.contentArray[index];
+    const contentItem = this.contentArray[index];
+
+    // Generate HTML output
     return `
-      <div>
-        <h3>${item.title}</h3>
-        <p>Description: ${item.description}</p>
-        <p>Creator: ${item.creator}</p>
-        ${item.imgURL ? `<img src="${item.imgURL}" alt="Image">` : ''}
-        ${item.type ? `<p>Type: ${item.type}</p>` : ''}
-      </div>
+      <h2>${contentItem.title}</h2>
+      <p>${contentItem.description}</p>
+      <p>Creator: ${contentItem.creator}</p>
+      <p>Type: ${contentItem.type || 'N/A'}</p>
+      ${contentItem.imgURL ? `<img src="${contentItem.imgURL}" alt="Image" width="300px" height="300px"/>` : ''}
     `;
   }
 }
