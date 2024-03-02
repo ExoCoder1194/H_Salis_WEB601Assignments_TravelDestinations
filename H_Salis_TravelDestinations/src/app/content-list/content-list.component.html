@@ -1,3 +1,6 @@
+<app-create-content (contentCreated)="addNewContent($event)"></app-create-content>
+<!-- Rest of your content list display -->
+
 <input type="text" [(ngModel)]="searchTitle" placeholder="Enter Content Title">
 <button (click)="searchContent()">Search</button>
 <div *ngFor="let type of typeList">
